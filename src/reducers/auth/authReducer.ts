@@ -1,9 +1,9 @@
 import { IAuth, defaultAuth } from "../../store/auth/auth.store";
-import AuthActions from "../../actions/Auth.action";
+import { AuthAction, AuthActionsTypes } from "../../actions/AuthAction";
 
-const authReducer = (state: IAuth = defaultAuth, action: any) => {
+const authReducer = (state: IAuth = defaultAuth, action: AuthAction) => {
   switch (action.type) {
-    case AuthActions.START_LOGGING:
+    case AuthActionsTypes.START_LOGGING:
       return state;
     default:
       return state;
