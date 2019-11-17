@@ -1,16 +1,29 @@
 import React from 'react';
-import { Provider } from 'react-redux';
+import { Provider, connect } from 'react-redux';
 import './App.css';
 import store from '../../helpers/store';
+import { createAction } from '../../actions/ActionTypes';
 
-export const App: React.FC = () => {
+interface IApp {
+  logging: Function,
+}
+
+export const App = (props: IApp) => {
+  const handleLogin = () => {
+    props.logging("", "");
+  };
+
   return (
     <Provider store={store}>
-      <div className="App">
+      <div className="App" onClick={handleLogin}>
         App
       </div>
     </Provider>
   );
 }
 
-export default App;
+const mapDispatchToProps = () => {
+  logging: (username: string, password: string) => createAction(username, password);
+};
+
+export default connect(null, mapDispatchToProps)(App);
